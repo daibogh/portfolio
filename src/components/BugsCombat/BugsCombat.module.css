@@ -1,0 +1,11 @@
+.bugsCombatArea {
+  width: calc(100% - 24px);
+  height: 360px;
+  background-color: black;
+}
+@media screen and (min-width: 390px) {
+  .bugsCombatArea {
+    width: 320px;
+    height: 480px;
+  }
+}
