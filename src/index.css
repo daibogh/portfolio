@@ -1,10 +1,10 @@
 #root {
   width: 100vw;
-  height: calc(100vh - 20px);
+  height: calc(100svh - 40px);
   background-color: #96c93d;
 }
 footer {
-  height: 20px;
+  height: 40px;
 }
 * {
   font-family: 'Fira Code', monospace;
