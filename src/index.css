@@ -1,7 +1,9 @@
 #root {
   width: 100vw;
   height: 100vh;
+  background-color: #96c93d;
 }
 * {
   font-family: 'Fira Code', monospace;
+  box-sizing: border-box;
 }
