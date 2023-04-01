@@ -1,0 +1,24 @@
+.animatedText {
+  position: relative;
+  font-size: 24px;
+}
+
+.animatedText::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10px;
+  width: 10px;
+  height: 100%;
+  animation: blink-caret 0.75s steps(1) infinite;
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #000;
+  }
+}
