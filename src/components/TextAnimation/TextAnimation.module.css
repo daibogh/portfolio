@@ -12,7 +12,10 @@
   height: 100%;
   animation: blink-caret 0.75s steps(1) infinite;
 }
-
+.withHiddenCursor::after {
+  animation: none;
+  background-color: transparent;
+}
 @keyframes blink-caret {
   from,
   to {

@@ -1,4 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
+import cn from 'classnames';
 import styles from './TextAnimation.module.css';
 type TextAnimationProps = {
   text: string;
@@ -6,10 +7,13 @@ type TextAnimationProps = {
 
 const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
   const [visibleText, setVisibleText] = useState('');
+  const [shouldHideCursor, setShouldHideCursor] = useState(false);
+
   const updateVisibleText = useCallback(
     (idx: number, options: { timer: any }) => {
       console.log(idx);
       if (idx >= text.length) {
+        setShouldHideCursor(true);
         return;
       }
       options.timer = setTimeout(() => {
@@ -19,6 +23,7 @@ const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
     },
     [text],
   );
+
   useEffect(() => {
     const timerOptions = { timer: null };
     updateVisibleText(0, timerOptions);
@@ -28,6 +33,15 @@ const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
       }
     };
   }, [updateVisibleText]);
-  return <div className={styles.animatedText}>{visibleText}</div>;
+
+  return (
+    <div
+      className={cn(styles.animatedText, {
+        [styles.withHiddenCursor]: shouldHideCursor,
+      })}
+    >
+      {visibleText}
+    </div>
+  );
 };
 export default TextAnimation;
