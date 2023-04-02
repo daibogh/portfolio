@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 
 import HelloWorldScene from './scenes/HelloWorldScene';
 import { RefObject } from 'react';
+// import 'phaser3-debug';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -14,15 +15,13 @@ const config: Phaser.Types.Core.GameConfig = {
   },
   physics: {
     default: 'arcade',
-    arcade: {
-      gravity: { y: 200 },
-    },
+    arcade: {},
   },
   scene: [HelloWorldScene],
 };
 
-export default (ref: RefObject<HTMLDivElement>) =>
-  new Phaser.Game({
+export default (ref: RefObject<HTMLDivElement>) => {
+  const game = new Phaser.Game({
     ...config,
     scale: {
       mode: Phaser.Scale.ScaleModes.RESIZE,
@@ -30,3 +29,6 @@ export default (ref: RefObject<HTMLDivElement>) =>
       height: ref.current?.offsetHeight,
     },
   });
+
+  return game;
+};

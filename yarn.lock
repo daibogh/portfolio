@@ -6987,7 +6987,14 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==
 
-phaser@^3.55.2:
+phaser3-debug@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/phaser3-debug/-/phaser3-debug-0.1.2.tgz#ee912dcb3fab1e005fba06cfa168ad6345f03037"
+  integrity sha512-w42QLmNh0IFV4VgQvV1fKZJX9l7J3V5s/QCRw6z4h6AOx6f4omld2CNTgLYJOtYfDjDftQvYNefIubzFctjR5Q==
+  dependencies:
+    phaser "^3.16.2"
+
+phaser@^3.16.2, phaser@^3.55.2:
   version "3.55.2"
   resolved "https://registry.yarnpkg.com/phaser/-/phaser-3.55.2.tgz#c1e2e9e70de7085502885e06f46b7eb4bd95e29a"
   integrity sha512-amKXsbb2Ht29dGPKvt1edq3yGGYKtq8373GpJYGKPNPnneYY6MtVTOgjHDuZwtmUyK4v86FugkT3hzW/N4tjxQ==

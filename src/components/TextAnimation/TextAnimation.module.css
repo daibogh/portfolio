@@ -2,8 +2,10 @@
   position: relative;
   font-size: 24px;
 }
-
-.animatedText::after {
+.cursor {
+  position: relative;
+}
+.cursor::after {
   content: '';
   position: absolute;
   top: 0;
@@ -12,10 +14,7 @@
   height: 100%;
   animation: blink-caret 0.75s steps(1) infinite;
 }
-.withHiddenCursor::after {
-  animation: none;
-  background-color: transparent;
-}
+
 @keyframes blink-caret {
   from,
   to {

@@ -11,7 +11,6 @@ const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
 
   const updateVisibleText = useCallback(
     (idx: number, options: { timer: any }) => {
-      console.log(idx);
       if (idx >= text.length) {
         setShouldHideCursor(true);
         return;
@@ -35,12 +34,9 @@ const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
   }, [updateVisibleText]);
 
   return (
-    <div
-      className={cn(styles.animatedText, {
-        [styles.withHiddenCursor]: shouldHideCursor,
-      })}
-    >
+    <div className={cn(styles.animatedText)}>
       {visibleText}
+      {!shouldHideCursor && <span className={styles.cursor} />}
     </div>
   );
 };

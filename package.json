@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "phaser3-debug": "^0.1.2",
     "prettier": "^2.8.7"
   }
 }
