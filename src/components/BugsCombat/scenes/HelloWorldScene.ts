@@ -11,7 +11,7 @@ export default class HelloWorldScene extends Phaser.Scene {
     'I will cover it with\n test!',
     'Send to backlog!',
     '//TODO: fix it later',
-    'Assigned a meeting',
+    'Assigned a meeting\nto discuss it',
     'Hm mb fix it\non backend?',
   ];
   gameState: {
