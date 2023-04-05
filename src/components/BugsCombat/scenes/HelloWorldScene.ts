@@ -23,7 +23,14 @@ export default class HelloWorldScene extends Phaser.Scene {
     rightMostBug: DynamicBody;
     isInCollision: boolean;
     shootTimer: Phaser.Time.TimerEvent;
-  } = { enemyVelocity: 1, isInCollision: false } as any;
+    rotationCoef: number;
+    rotationLimit: number;
+  } = {
+    enemyVelocity: 0.3,
+    isInCollision: false,
+    rotationCoef: 0.01,
+    rotationLimit: 1,
+  } as any;
   preload() {
     this.load.image('bug', bugSrc);
     this.load.image('developer', developerSrc);
@@ -157,7 +164,13 @@ export default class HelloWorldScene extends Phaser.Scene {
         //@ts-ignore
         .forEach((bug: DynamicBody) => {
           bug.x += this.gameState.enemyVelocity;
+          bug.rotation += this.gameState.rotationCoef;
         });
+      const bug = this.gameState.bugs.getChildren()[0] as any as DynamicBody;
+      if (Math.abs(bug.rotation) >= Math.abs(this.gameState.rotationLimit)) {
+        this.gameState.rotationCoef *= -1;
+        this.gameState.rotationLimit *= -1;
+      }
       this.gameState.leftMostBug = this.sortedEnemies()[0];
       this.gameState.rightMostBug = this.sortedEnemies().reverse()[0];
       if (
