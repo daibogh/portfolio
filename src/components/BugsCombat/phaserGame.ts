@@ -22,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
   scene: [HelloWorldScene],
 };
 
-export default (ref: RefObject<HTMLDivElement>) => {
+export const createGame = (ref: RefObject<HTMLDivElement>) => {
   const game = new Phaser.Game({
     ...config,
     scale: {
