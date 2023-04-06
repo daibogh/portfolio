@@ -1,11 +1,16 @@
 import { FC } from 'react';
 import styles from './QuestionButton.module.css';
-const QuestionButton: FC<{ text: string; onClick: () => void }> = ({
-  text,
-  onClick,
-}) => {
+import cn from 'classnames';
+const QuestionButton: FC<{
+  text: string;
+  onClick: () => void;
+  disabled: boolean;
+}> = ({ text, onClick, disabled }) => {
   return (
-    <div className={styles.container} onClick={onClick}>
+    <div
+      className={cn(styles.container, { [styles.disabled]: disabled })}
+      onClick={onClick}
+    >
       {text}
     </div>
   );

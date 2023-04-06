@@ -8,7 +8,7 @@ const MainPage: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textWrapper}>
-        <TextAnimation text="Hi! My name is Peter" />
+        <TextAnimation text="Hi! My name is Peter" shouldAnimate />
       </div>
       <ChatContainer />
       {/* <BugsCombat /> */}
