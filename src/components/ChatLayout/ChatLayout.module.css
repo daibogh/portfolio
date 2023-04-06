@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 4px;
+}
+
+.message {
+  padding: 5px 10px;
+  max-width: 80%;
+  position: relative;
+  border-radius: 5px;
+}
+
+.messageRight {
+  align-self: flex-end;
+  background-color: blanchedalmond;
+}
+
+.messageLeft {
+  align-self: flex-start;
+  background-color: aquamarine;
+}

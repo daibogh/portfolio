@@ -1,0 +1,8 @@
+{
+  "tasks": [
+    {
+      "type": "yarn",
+      "script": "start"
+    }
+  ]
+}

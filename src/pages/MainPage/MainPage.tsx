@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import styles from './MainPage.module.css';
 import { TextAnimation } from '../../components/TextAnimation';
-import { BugsCombat } from '../../components/BugsCombat';
+import { ChatContainer } from '../../containers/ChatContainer';
+// import { BugsCombat } from '../../components/BugsCombat';
 
 const MainPage: FC = () => {
   return (
@@ -9,7 +10,8 @@ const MainPage: FC = () => {
       <div className={styles.textWrapper}>
         <TextAnimation text="Hi! My name is Peter" />
       </div>
-      <BugsCombat />
+      <ChatContainer />
+      {/* <BugsCombat /> */}
     </div>
   );
 };
