@@ -3,16 +3,23 @@ import cn from 'classnames';
 import styles from './TextAnimation.module.css';
 type TextAnimationProps = {
   text: string;
+  shouldAnimate?: boolean;
+  onTypeEnd?: () => void;
 };
-
-const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
-  const [visibleText, setVisibleText] = useState('');
-  const [shouldHideCursor, setShouldHideCursor] = useState(false);
+const noop = () => {};
+const TextAnimation: FC<TextAnimationProps> = ({
+  text,
+  onTypeEnd = noop,
+  shouldAnimate,
+}) => {
+  const [visibleText, setVisibleText] = useState(shouldAnimate ? '' : text);
+  const [shouldHideCursor, setShouldHideCursor] = useState(!shouldAnimate);
 
   const updateVisibleText = useCallback(
     (idx: number, options: { timer: any }) => {
       if (idx >= text.length) {
         setShouldHideCursor(true);
+        onTypeEnd();
         return;
       }
       options.timer = setTimeout(() => {
@@ -24,6 +31,7 @@ const TextAnimation: FC<TextAnimationProps> = ({ text }) => {
   );
 
   useEffect(() => {
+    if (!shouldAnimate) return;
     const timerOptions = { timer: null };
     updateVisibleText(0, timerOptions);
     return () => {

@@ -1,20 +1,39 @@
 import { useStore } from '@nanostores/react';
-import { FC, Fragment, ReactNode } from 'react';
-import { chatAtom } from '../../stores/chat/chatAtoms';
+import { FC, Fragment, ReactNode, useMemo } from 'react';
+import {
+  chatAtom,
+  typeAnswerDone,
+  typeQuestionDone,
+} from '../../stores/chat/chatAtoms';
 import { QuestionId, questionsMap } from '../../stores/chat/data';
 import { ChatLayout } from '../../components/ChatLayout';
 import { QuestionSelector } from '../QuestionSelector';
+import { TextAnimation } from '../../components/TextAnimation';
 
 const ChatContainer: FC = () => {
-  const selectedQuestions = useStore(chatAtom);
-  const chat: ReactNode[] = (selectedQuestions as any[]).reduce(
-    (accum, question) => [
-      ...accum,
-      <div>{questionsMap[question as QuestionId].text}</div>,
-      <div>answer</div>,
-    ],
-    [],
-  );
+  const chatStore = useStore(chatAtom);
+  const chat = useMemo(() => {
+    const list: ReactNode[] = [];
+    for (const { type, isTyping, key } of chatStore) {
+      const element =
+        type === 'question' ? (
+          <TextAnimation
+            text={questionsMap[key as QuestionId].text}
+            shouldAnimate={isTyping}
+            onTypeEnd={() => typeQuestionDone(key as QuestionId)}
+          />
+        ) : (
+          <TextAnimation
+            text={key}
+            shouldAnimate={isTyping}
+            onTypeEnd={() => typeAnswerDone(key as QuestionId)}
+          />
+        );
+      list.push(element);
+    }
+    return list;
+  }, [chatStore]);
+
   return (
     <>
       <ChatLayout>

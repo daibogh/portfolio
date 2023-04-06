@@ -2,6 +2,9 @@
   background-color: blanchedalmond;
   padding: 10px 5px;
 }
-.container:hover {
+:not(.disabled).container:hover {
   cursor: pointer;
+}
+.disabled {
+  pointer-events: none;
 }
