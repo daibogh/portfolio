@@ -1,6 +1,0 @@
-import { atom } from 'nanostores';
-const questions = [
-  { text: 'Can you tell me about yourself?', id: 'aboutYourself' },
-  { text: 'What is your work experience?', id: 'workExperience' },
-  { text: 'Do you have any kinda hobby?', id: 'hobby' },
-];
