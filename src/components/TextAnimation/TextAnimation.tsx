@@ -25,7 +25,7 @@ const TextAnimation: FC<TextAnimationProps> = ({
       options.timer = setTimeout(() => {
         setVisibleText(text.slice(0, idx + 1));
         updateVisibleText(idx + 1, options);
-      }, Math.floor(Math.random() * 300));
+      }, Math.floor(Math.random() * 200));
     },
     [text],
   );

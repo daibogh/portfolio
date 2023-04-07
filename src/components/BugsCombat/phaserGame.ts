@@ -22,14 +22,9 @@ const config: Phaser.Types.Core.GameConfig = {
   scene: [HelloWorldScene],
 };
 
-export const createGame = (
-  ref: RefObject<HTMLDivElement>,
-  isDesktop: boolean,
-) => {
+export const createGame = (ref: RefObject<HTMLDivElement>) => {
   const game = new Phaser.Game({
     ...config,
-    //@ts-ignore
-    isDesktop,
     // fps: { target: 30 },
     scale: {
       mode: Phaser.Scale.ScaleModes.RESIZE,

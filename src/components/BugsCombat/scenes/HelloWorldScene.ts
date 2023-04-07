@@ -54,7 +54,7 @@ export default class HelloWorldScene extends Phaser.Scene {
     this.gameState.bugs = bugs;
     function genBugs() {
       // @ts-ignore
-      const isDesktop: boolean = this.game.isDesktop;
+      const isDesktop: boolean = +this.game.config.width >= 320;
       for (let yVal = 1; yVal < 4; yVal++) {
         for (let xVal = 1; xVal < (isDesktop ? 6 : 4); xVal += 2) {
           genBug(50 * xVal, 70 * yVal);
