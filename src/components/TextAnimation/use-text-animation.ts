@@ -25,7 +25,7 @@ export const useTextAnimation = ({
         updateVisibleText(idx + 1, options);
       }, Math.floor(Math.random() * MAX_DELAY));
     },
-    [text],
+    [text, onTypeEnd],
   );
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const useTextAnimation = ({
         clearTimeout(timerOptions.timer);
       }
     };
-  }, [updateVisibleText]);
+  }, [updateVisibleText, shouldAnimate]);
   return useMemo(
     () => ({ visibleText, shouldHideCursor }),
     [visibleText, shouldHideCursor],
