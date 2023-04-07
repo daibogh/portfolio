@@ -41,7 +41,6 @@ export default class HelloWorldScene extends Phaser.Scene {
     this.createBugs();
     this.createDeveloper();
     this.createBullets();
-    this.game.input.touch.enabled = false;
   }
   createBugs() {
     const bugs = this.physics.add.group();
@@ -134,7 +133,7 @@ export default class HelloWorldScene extends Phaser.Scene {
     };
 
     this.gameState.shootTimer = this.time.addEvent({
-      delay: 500,
+      delay: 700,
       callback: fireBullet,
       callbackScope: this,
       loop: true,
@@ -148,6 +147,9 @@ export default class HelloWorldScene extends Phaser.Scene {
     return orderedByXCoord as any;
   }
   update() {
+    if (this.game.input.touch?.enabled) {
+      this.game.input.touch.enabled = false;
+    }
     if (this.gameState.bugs.getChildren().length === 0) {
       this.gameState.genBugs();
       if (this.gameState.shootTimer) {
