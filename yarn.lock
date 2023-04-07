@@ -1744,6 +1744,11 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
+"@nanostores/persistent@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@nanostores/persistent/-/persistent-0.7.0.tgz#7c919cbf102770190ed55cea13401a77bfde741e"
+  integrity sha512-4PAInL/T1hbftZUJ0cmgdFHBMalUoq7BUXFBy7QfyMv/8X3LPTYNh/yxspL7+J+XM3UNvVI7IFRMMs6FBasjhQ==
+
 "@nanostores/react@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@nanostores/react/-/react-0.4.1.tgz#209c6726c0b42a1d21d9f7aa8f5276cdb0ad40d8"

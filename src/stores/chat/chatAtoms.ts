@@ -1,9 +1,13 @@
-import { atom, computed } from 'nanostores';
+import { computed } from 'nanostores';
 import { QuestionId, questionsMap } from './data';
+import { persistentAtom } from '@nanostores/persistent';
 
-export const selectedQuestionsAtom = atom<
+export const selectedQuestionsAtom = persistentAtom<
   { key: QuestionId; isTyping: boolean }[]
->([]);
+>('selectedQuestionsAtom', [], {
+  encode: (value) => JSON.stringify(value),
+  decode: (value) => JSON.parse(value),
+});
 
 export const questionsToSelectAtom = computed(
   selectedQuestionsAtom,
@@ -38,9 +42,16 @@ const clearQuestions = () => {
   responsesAtom.set({});
 };
 
-const responsesAtom = atom<
+const responsesAtom = persistentAtom<
   Partial<Record<QuestionId, { key: string; isTyping: boolean }>>
->({});
+>(
+  'responsesAtom',
+  {},
+  {
+    encode: (value) => JSON.stringify(value),
+    decode: (value) => JSON.parse(value),
+  },
+);
 export const typeQuestionDone = (question: QuestionId) => {
   selectedQuestionsAtom.set(
     selectedQuestionsAtom
