@@ -1,7 +1,6 @@
 import { computed } from 'nanostores';
 import { QuestionId, questionsMap } from './data';
 import { persistentAtom } from '@nanostores/persistent';
-import { boolean } from 'yargs';
 
 export const selectedQuestionsAtom = persistentAtom<
   { key: QuestionId; isTyping: boolean }[]
