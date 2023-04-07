@@ -41,6 +41,7 @@ export default class HelloWorldScene extends Phaser.Scene {
     this.createBugs();
     this.createDeveloper();
     this.createBullets();
+    this.game.input.touch.enabled = false;
   }
   createBugs() {
     const bugs = this.physics.add.group();
