@@ -1,6 +1,6 @@
 #root {
   /* width: 100vw; */
-  min-height: calc(100svh - 40px);
+  min-height: calc(var(--full-height) - 40px);
   background-color: #96c93d;
 }
 footer {
