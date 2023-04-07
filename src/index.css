@@ -1,7 +1,7 @@
 #root {
-  /* width: 100vw; */
   min-height: calc(var(--full-height) - 40px);
   background-color: #96c93d;
+  display: grid;
 }
 footer {
   height: 40px;

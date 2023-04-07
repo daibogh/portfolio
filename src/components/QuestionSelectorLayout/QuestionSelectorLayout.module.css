@@ -4,4 +4,10 @@
   gap: 12px;
   background-color: beige;
   padding: 0 5px;
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: 500px;
+  }
 }

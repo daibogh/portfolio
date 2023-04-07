@@ -6,6 +6,7 @@ type TextAnimationProps = {
   shouldAnimate?: boolean;
   onTypeEnd?: () => void;
 };
+const MAX_DELAY = 150;
 const noop = () => {};
 const TextAnimation: FC<TextAnimationProps> = ({
   text,
@@ -25,7 +26,7 @@ const TextAnimation: FC<TextAnimationProps> = ({
       options.timer = setTimeout(() => {
         setVisibleText(text.slice(0, idx + 1));
         updateVisibleText(idx + 1, options);
-      }, Math.floor(Math.random() * 200));
+      }, Math.floor(Math.random() * MAX_DELAY));
     },
     [text],
   );
