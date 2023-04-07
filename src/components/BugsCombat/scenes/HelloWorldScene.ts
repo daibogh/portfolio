@@ -53,8 +53,10 @@ export default class HelloWorldScene extends Phaser.Scene {
     }
     this.gameState.bugs = bugs;
     function genBugs() {
+      // @ts-ignore
+      const isDesktop: boolean = this.game.isDesktop;
       for (let yVal = 1; yVal < 4; yVal++) {
-        for (let xVal = 1; xVal < 6; xVal += 2) {
+        for (let xVal = 1; xVal < (isDesktop ? 6 : 4); xVal += 2) {
           genBug(50 * xVal, 70 * yVal);
         }
       }
@@ -131,7 +133,7 @@ export default class HelloWorldScene extends Phaser.Scene {
     };
 
     this.gameState.shootTimer = this.time.addEvent({
-      delay: 1000,
+      delay: 500,
       callback: fireBullet,
       callbackScope: this,
       loop: true,
@@ -181,7 +183,7 @@ export default class HelloWorldScene extends Phaser.Scene {
         this.gameState.bugs
           .getChildren()
           //@ts-ignore
-          .forEach((bug: DynamicBody) => (bug.y += 20));
+          .forEach((bug: DynamicBody) => (bug.y += 10));
       }
     }
   }

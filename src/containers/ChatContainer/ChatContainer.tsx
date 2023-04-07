@@ -9,6 +9,7 @@ import { QuestionId, questionsMap } from '../../stores/chat/data';
 import { ChatLayout } from '../../components/ChatLayout';
 import { QuestionSelector } from '../QuestionSelector';
 import { TextAnimation } from '../../components/TextAnimation';
+import { AnswerResolver } from '../../components/answers';
 
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
@@ -23,9 +24,9 @@ const ChatContainer: FC = () => {
             onTypeEnd={() => typeQuestionDone(key as QuestionId)}
           />
         ) : (
-          <TextAnimation
-            text={key}
-            shouldAnimate={isTyping}
+          <AnswerResolver
+            id={key}
+            isTyping={isTyping}
             onTypeEnd={() => typeAnswerDone(key as QuestionId)}
           />
         );
