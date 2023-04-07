@@ -2,13 +2,23 @@ import { FC } from 'react';
 import styles from './MainPage.module.css';
 import { TextAnimation } from '../../components/TextAnimation';
 import { ChatContainer } from '../../containers/ChatContainer';
+import { useStore } from '@nanostores/react';
+import {
+  greetMessageConfigAtom,
+  greetTypingDone,
+} from '../../stores/chat/chatAtoms';
 // import { BugsCombat } from '../../components/BugsCombat';
 
 const MainPage: FC = () => {
+  const { isTyping } = useStore(greetMessageConfigAtom);
   return (
     <div className={styles.container}>
       <div className={styles.textWrapper}>
-        <TextAnimation text="Hi! My name is Peter" shouldAnimate />
+        <TextAnimation
+          text="Hi! My name is Peter"
+          shouldAnimate={isTyping}
+          onTypeEnd={greetTypingDone}
+        />
       </div>
       <ChatContainer />
       {/* <BugsCombat /> */}

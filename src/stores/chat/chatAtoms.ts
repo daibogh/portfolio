@@ -1,6 +1,7 @@
 import { computed } from 'nanostores';
 import { QuestionId, questionsMap } from './data';
 import { persistentAtom } from '@nanostores/persistent';
+import { boolean } from 'yargs';
 
 export const selectedQuestionsAtom = persistentAtom<
   { key: QuestionId; isTyping: boolean }[]
@@ -8,7 +9,19 @@ export const selectedQuestionsAtom = persistentAtom<
   encode: (value) => JSON.stringify(value),
   decode: (value) => JSON.parse(value),
 });
-
+export const greetMessageConfigAtom = persistentAtom<{
+  isTyping: boolean;
+}>(
+  'greetMessageConfigAtom',
+  { isTyping: true },
+  {
+    encode: (value) => JSON.stringify(value),
+    decode: (value) => JSON.parse(value),
+  },
+);
+export const greetTypingDone = () => {
+  greetMessageConfigAtom.set({ isTyping: false });
+};
 export const questionsToSelectAtom = computed(
   selectedQuestionsAtom,
   (_selectedQuestions) => {
@@ -40,6 +53,7 @@ const addQuestion = (question: QuestionId) => {
 const clearQuestions = () => {
   selectedQuestionsAtom.set([]);
   responsesAtom.set({});
+  greetMessageConfigAtom.set({ isTyping: true });
 };
 
 const responsesAtom = persistentAtom<
@@ -71,11 +85,12 @@ export const typeAnswerDone = (answerKey: QuestionId) => {
   });
 };
 export const isSomethingTyping = computed(
-  [selectedQuestionsAtom, responsesAtom],
-  (selectedQuestionsAtom, responsesAtom) => {
+  [selectedQuestionsAtom, responsesAtom, greetMessageConfigAtom],
+  (selectedQuestionsAtom, responsesAtom, greetMessageConfigAtom) => {
     return (
       selectedQuestionsAtom.some(({ isTyping }) => isTyping) ||
-      Object.values(responsesAtom).some(({ isTyping }) => isTyping)
+      Object.values(responsesAtom).some(({ isTyping }) => isTyping) ||
+      greetMessageConfigAtom.isTyping
     );
   },
 );
