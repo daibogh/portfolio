@@ -20,6 +20,7 @@ export const useTextAnimation = ({
         onTypeEnd();
         return;
       }
+      setShouldHideCursor(false);
       options.timer = setTimeout(() => {
         setVisibleText(text.slice(0, idx + 1));
         updateVisibleText(idx + 1, options);
