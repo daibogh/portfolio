@@ -13,7 +13,9 @@ export const AnswerResolver: FC<{
   if (id === 'hobby') {
     return (
       <TextAnimation
-        text={'I like videogames and my doggo 🐶'}
+        text={
+          'I love programming, I guess that is my hobby#1 ❤️. Also I like videogames and my doggo 🐶'
+        }
         onTypeEnd={onTypeEnd}
         shouldAnimate={isTyping}
       />

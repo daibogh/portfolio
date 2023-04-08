@@ -3,7 +3,7 @@ import { TextAnimation } from '../../TextAnimation';
 import { BugsCombat } from '../../BugsCombat';
 import styles from './WorkExperienceAnswer.module.css';
 const text =
-  'I work a lot, I fix a lot, I discuss a lot. Here is how I fight with bugs everyday :)';
+  'I have been working hard during five years of my frontend carrier. Let me show you how I fight with bugs everyday :)';
 const WorkExperienceAnswer: FC<{
   isTyping: boolean;
   onTypeEnd: () => void;
