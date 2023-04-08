@@ -1,10 +1,6 @@
 import { useStore } from '@nanostores/react';
 import { FC, Fragment, ReactNode, useMemo } from 'react';
-import {
-  chatAtom,
-  typeAnswerDone,
-  typeQuestionDone,
-} from '../../stores/chat/chatAtoms';
+import { chatAtom, typeAnswerDone, typeQuestionDone } from '../../stores/chat';
 import { QuestionId, questionsMap } from '../../stores/chat/data';
 import { ChatLayout } from '../../components/ChatLayout';
 import { QuestionSelector } from '../QuestionSelector';

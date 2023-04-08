@@ -1,8 +1,5 @@
 import { FC } from 'react';
-import {
-  isSomethingTyping,
-  questionsToSelectAtom,
-} from '../../stores/chat/chatAtoms';
+import { isSomethingTyping, questionsToSelectAtom } from '../../stores/chat';
 import { useStore } from '@nanostores/react';
 import { questionsMap } from '../../stores/chat/data';
 import { QuestionSelectorLayout } from '../../components/QuestionSelectorLayout';

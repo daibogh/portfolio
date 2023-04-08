@@ -3,10 +3,7 @@ import styles from './MainPage.module.css';
 import { TextAnimation } from '../../components/TextAnimation';
 import { ChatContainer } from '../../containers/ChatContainer';
 import { useStore } from '@nanostores/react';
-import {
-  greetMessageConfigAtom,
-  greetTypingDone,
-} from '../../stores/chat/chatAtoms';
+import { greetMessageConfigAtom, greetTypingDone } from '../../stores/chat';
 // import { BugsCombat } from '../../components/BugsCombat';
 
 const MainPage: FC = () => {
