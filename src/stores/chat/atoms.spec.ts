@@ -10,14 +10,14 @@ describe('atoms', () => {
       expect(greetMessageConfigAtom.get()).toEqual({ isTyping: true });
     });
   });
-  describe('selectedQuestionsAtom', () => {
-    it('should return [] as initial value', () => {
-      expect(selectedQuestionsAtom.get()).toEqual([]);
-    });
-  });
   describe('responsesAtom', () => {
     it('should return {} as initial value', () => {
       expect(responsesAtom.get()).toEqual({});
+    });
+  });
+  describe('selectedQuestionsAtom', () => {
+    it('should return [] as initial value', () => {
+      expect(selectedQuestionsAtom.get()).toEqual([]);
     });
   });
 });
