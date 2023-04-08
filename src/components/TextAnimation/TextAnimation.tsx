@@ -21,7 +21,9 @@ const TextAnimation: FC<TextAnimationProps> = ({
   return (
     <div className={cn(styles.animatedText)}>
       {visibleText}
-      {!shouldHideCursor && <span className={styles.cursor} />}
+      {!shouldHideCursor && (
+        <span className={styles.cursor} data-testid="cursor" />
+      )}
     </div>
   );
 };
