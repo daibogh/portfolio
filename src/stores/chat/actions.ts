@@ -6,6 +6,7 @@ import {
 } from './atoms';
 
 export const greetTypingDone = () => {
+  console.trace('greetTypingDone');
   greetMessageConfigAtom.set({ isTyping: false });
 };
 

@@ -42,7 +42,7 @@ const AnswerResolver: FC<{
         const CustomComponent: FC | null =
           (id && customMessagesDictionary[id]) || null;
         return (
-          <ChatMessage type="left">
+          <ChatMessage type="left" key={idx}>
             {text ? (
               <TextAnimation
                 text={text}
