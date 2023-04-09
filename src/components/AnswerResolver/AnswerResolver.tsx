@@ -9,7 +9,7 @@ import {
 import { TextAnimation } from '../TextAnimation';
 import { Response } from '../../stores/chat/data';
 import { BugsCombat } from '../BugsCombat';
-import styles from './index.module.css';
+import styles from './AnswerResolver.module.css';
 const customMessagesDictionary: Record<string, FC> = {
   bugsCombat: BugsCombat,
 };
@@ -19,10 +19,10 @@ const CustomComponentWrapper: FC<{
 }> = ({ children, onRenderEnd }) => {
   useLayoutEffect(() => {
     onRenderEnd();
-  }, []);
+  }, [onRenderEnd]);
   return <>{children}</>;
 };
-export const AnswerResolver: FC<{
+const AnswerResolver: FC<{
   onTypeEnd: () => void;
   isTyping: boolean;
   messageConfigs: Response[];
@@ -32,9 +32,6 @@ export const AnswerResolver: FC<{
   );
   const [isPartBeignTyped, setIsPartBeignTyped] = useState(isTyping);
   useEffect(() => {
-    console.log('isTyping', isTyping);
-    console.log('isPartBeignTyped', isPartBeignTyped);
-    console.log('shownMessages', shownMessages);
     if (!isPartBeignTyped && isTyping) {
       if (messageConfigs.length > shownMessages.length) {
         setShownMessages([
@@ -46,7 +43,7 @@ export const AnswerResolver: FC<{
         onTypeEnd();
       }
     }
-  }, [isPartBeignTyped, isTyping]);
+  }, [isPartBeignTyped, isTyping, messageConfigs, shownMessages, onTypeEnd]);
   const onPartBeingTypedEnd = useCallback(() => {
     setIsPartBeignTyped(false);
   }, []);
@@ -78,3 +75,4 @@ export const AnswerResolver: FC<{
     </>
   );
 };
+export default AnswerResolver;

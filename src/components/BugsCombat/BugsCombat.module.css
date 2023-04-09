@@ -2,6 +2,7 @@
   width: calc(100% - 24px);
   height: 360px;
   background-color: black;
+  margin: 0 auto;
 }
 @media screen and (min-width: 390px) {
   .bugsCombatArea {
