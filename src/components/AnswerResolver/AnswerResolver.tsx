@@ -1,27 +1,15 @@
-import {
-  FC,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { TextAnimation } from '../TextAnimation';
 import { Response } from '../../stores/chat/data';
 import { BugsCombat } from '../BugsCombat';
 import styles from './AnswerResolver.module.css';
+import { CustomAnswerWrapper } from '../CustomAnswerWrapper';
+import { DoggoImage } from '../DoggoImage';
 const customMessagesDictionary: Record<string, FC> = {
   bugsCombat: BugsCombat,
+  doggoImage: DoggoImage,
 };
-const CustomComponentWrapper: FC<{
-  onRenderEnd: () => void;
-  children: ReactNode;
-}> = ({ children, onRenderEnd }) => {
-  useLayoutEffect(() => {
-    onRenderEnd();
-  }, [onRenderEnd]);
-  return <>{children}</>;
-};
+
 const AnswerResolver: FC<{
   onTypeEnd: () => void;
   isTyping: boolean;
@@ -65,9 +53,9 @@ const AnswerResolver: FC<{
               />
             ) : null}
             {CustomComponent ? (
-              <CustomComponentWrapper onRenderEnd={onPartBeingTypedEnd}>
+              <CustomAnswerWrapper onRenderEnd={onPartBeingTypedEnd}>
                 <CustomComponent />
-              </CustomComponentWrapper>
+              </CustomAnswerWrapper>
             ) : null}
           </div>
         );
