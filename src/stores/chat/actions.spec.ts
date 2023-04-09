@@ -36,7 +36,10 @@ describe('actions', () => {
       // then call clearChat and expect all atoms to be empty
       selectedQuestionsAtom.set([{ key: 'aboutYourself', isTyping: false }]);
       responsesAtom.set({
-        aboutYourself: { key: 'aboutYourself', isTyping: false },
+        aboutYourself: {
+          answer: [{ text: 'answer1', type: 'text' }],
+          isTyping: false,
+        },
       });
       greetMessageConfigAtom.set({ isTyping: false });
       clearChat();
@@ -57,18 +60,33 @@ describe('actions', () => {
       selectedQuestionsAtom.set([{ key: 'aboutYourself', isTyping: true }]);
       typeQuestionDone('aboutYourself');
       expect(responsesAtom.get()).toEqual({
-        aboutYourself: { key: 'aboutYourself', isTyping: true },
+        aboutYourself: {
+          key: 'aboutYourself',
+          isTyping: true,
+          answer: [
+            {
+              text: 'I live in Belgrade, working as frontend engineer.',
+              type: 'text',
+            },
+          ],
+        },
       });
     });
   });
   describe('typeAnswerDone', () => {
     it('should set responsesAtom.isTyping to false', () => {
       responsesAtom.set({
-        aboutYourself: { key: 'aboutYourself', isTyping: true },
+        aboutYourself: {
+          isTyping: true,
+          answer: [{ text: 'some text', type: 'text' }],
+        },
       });
       typeAnswerDone('aboutYourself');
       expect(responsesAtom.get()).toEqual({
-        aboutYourself: { key: 'aboutYourself', isTyping: false },
+        aboutYourself: {
+          isTyping: false,
+          answer: [{ text: 'some text', type: 'text' }],
+        },
       });
     });
   });

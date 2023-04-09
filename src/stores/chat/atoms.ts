@@ -1,5 +1,5 @@
 import { persistentAtom } from '@nanostores/persistent';
-import { QuestionId } from './data';
+import { QuestionId, Response } from './data';
 
 export const selectedQuestionsAtom = persistentAtom<
   { key: QuestionId; isTyping: boolean }[]
@@ -18,7 +18,7 @@ export const greetMessageConfigAtom = persistentAtom<{
   },
 );
 export const responsesAtom = persistentAtom<
-  Partial<Record<QuestionId, { key: string; isTyping: boolean }>>
+  Partial<Record<QuestionId, { answer: Response[]; isTyping: boolean }>>
 >(
   'responsesAtom',
   {},

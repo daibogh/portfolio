@@ -6,26 +6,33 @@ import { ChatLayout } from '../../components/ChatLayout';
 import { QuestionSelector } from '../QuestionSelector';
 import { TextAnimation } from '../../components/TextAnimation';
 import { AnswerResolver } from '../../components/answers';
-
+import styles from './ChatContainer.module.css';
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
   const chat = useMemo(() => {
     const list: ReactNode[] = [];
-    for (const { type, isTyping, key } of chatStore) {
-      const element =
-        type === 'question' ? (
+    for (const options of chatStore) {
+      let element: ReactNode = null;
+      if (options.type === 'question') {
+        const { key, isTyping } = options;
+        element = (
           <TextAnimation
-            text={questionsMap[key as QuestionId].text}
+            className={styles.messageRight}
+            text={questionsMap[key].text}
             shouldAnimate={isTyping}
-            onTypeEnd={() => typeQuestionDone(key as QuestionId)}
+            onTypeEnd={() => typeQuestionDone(key)}
           />
-        ) : (
+        );
+      } else {
+        const { key, isTyping, answer } = options;
+        element = (
           <AnswerResolver
-            id={key}
+            messageConfigs={answer}
             isTyping={isTyping}
             onTypeEnd={() => typeAnswerDone(key as QuestionId)}
           />
         );
+      }
       list.push(element);
     }
     return list;
@@ -33,11 +40,7 @@ const ChatContainer: FC = () => {
 
   return (
     <>
-      <ChatLayout>
-        {chat.map((elem, idx) => (
-          <Fragment key={idx}>{elem}</Fragment>
-        ))}
-      </ChatLayout>
+      <ChatLayout>{chat}</ChatLayout>
       <QuestionSelector />
     </>
   );

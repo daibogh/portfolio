@@ -1,0 +1,17 @@
+.messageLeft {
+  padding: 5px 10px;
+  max-width: 100%;
+  position: relative;
+  border-radius: 5px;
+  align-self: flex-start;
+  background-color: aquamarine;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: relative;
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .messageLeft {
+    max-width: 80%;
+  }
+}

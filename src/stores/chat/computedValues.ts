@@ -4,7 +4,7 @@ import {
   responsesAtom,
   selectedQuestionsAtom,
 } from './atoms';
-import { QuestionId, questionsMap } from './data';
+import { QuestionId, questionsMap, Response } from './data';
 import { addQuestion, clearChat } from './actions';
 
 export const questionsToSelectAtom = computed(
@@ -40,18 +40,26 @@ export const isSomethingTyping = computed(
 export const chatAtom = computed(
   [selectedQuestionsAtom, responsesAtom],
   (questions, responses) => {
-    const chatList: {
-      key: string;
-      isTyping: boolean;
-      type: 'question' | 'response';
-    }[] = [];
+    const chatList: (
+      | {
+          key: QuestionId;
+          isTyping: boolean;
+          type: 'question';
+        }
+      | {
+          key: QuestionId;
+          answer: Response[];
+          type: 'response';
+          isTyping: boolean;
+        }
+    )[] = [];
     for (const question of questions) {
       const responseObj = responses[question.key];
 
       chatList.push({ ...question, type: 'question' });
 
       if (responseObj) {
-        chatList.push({ ...responseObj, type: 'response' });
+        chatList.push({ ...responseObj, type: 'response', key: question.key });
       }
     }
     return chatList;
