@@ -2,9 +2,9 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import { TextAnimation } from '../TextAnimation';
 import { Response } from '../../stores/chat/data';
 import { BugsCombat } from '../BugsCombat';
-import styles from './AnswerResolver.module.css';
 import { CustomAnswerWrapper } from '../CustomAnswerWrapper';
 import { DoggoImage } from '../DoggoImage';
+import { ChatMessage } from '../ChatMessage';
 const customMessagesDictionary: Record<string, FC> = {
   bugsCombat: BugsCombat,
   doggoImage: DoggoImage,
@@ -42,7 +42,7 @@ const AnswerResolver: FC<{
         const CustomComponent: FC | null =
           (id && customMessagesDictionary[id]) || null;
         return (
-          <div className={styles.messageLeft}>
+          <ChatMessage type="left">
             {text ? (
               <TextAnimation
                 text={text}
@@ -57,7 +57,7 @@ const AnswerResolver: FC<{
                 <CustomComponent />
               </CustomAnswerWrapper>
             ) : null}
-          </div>
+          </ChatMessage>
         );
       })}
     </>

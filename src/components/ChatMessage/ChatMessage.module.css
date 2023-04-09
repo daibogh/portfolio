@@ -3,16 +3,45 @@
   max-width: 100%;
   position: relative;
   border-radius: 5px;
+  border: 2px solid black;
+  --message-right-bg-color: rgb(99, 107, 224);
+  --message-left-bg-color: aquamarine;
+  --message-right-color: #ffe5b4;
+  --message-left-color: black;
 }
 
 .messageRight {
   align-self: flex-end;
-  background-color: blanchedalmond;
+  background-color: var(--message-right-bg-color);
+  color: var(--message-right-color);
+  border-color: var(--message-right-color);
 }
-
 .messageLeft {
   align-self: flex-start;
-  background-color: aquamarine;
+  background-color: var(--message-left-bg-color);
+  color: var(--message-left-color);
+  border-color: var(--message-left-color);
+}
+.messageRight::before,
+.messageLeft::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: rotate(45deg);
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  bottom: -7px;
+}
+.messageRight::before {
+  background-color: var(--message-right-bg-color);
+  right: 10px;
+  border-color: var(--message-right-color);
+}
+.messageLeft::before {
+  background-color: var(--message-left-bg-color);
+  border-color: var(--message-left-color);
+  left: 10px;
 }
 @media screen and (min-width: 600px) {
   .message {
