@@ -24,6 +24,7 @@ export const responsesMap: Record<QuestionId, Response[]> = {
   hobby: [
     { type: 'text', text: 'I love programming, I guess that is my hobby#1 ❤️' },
     { type: 'text', text: 'Also I like videogames and my doggo 🐶' },
+    { type: 'custom', id: 'doggoImage' },
   ],
   workExperience: [
     {
