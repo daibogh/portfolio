@@ -1,5 +1,5 @@
 #root {
-  min-height: calc(var(--full-height) - 40px);
+  min-height: calc(var(--full-height) - 20px);
   background-color: #96c93d;
   display: grid;
 }
