@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from 'react';
-const MAX_DELAY = 100;
+const MAX_DELAY = 60;
 
 export const useTextAnimation = ({
   text,
