@@ -3,10 +3,6 @@
   background-color: #96c93d;
   display: grid;
 }
-footer {
-  height: 40px;
-  background-color: aliceblue;
-}
 * {
   font-family: 'Fira Code', monospace;
   box-sizing: border-box;

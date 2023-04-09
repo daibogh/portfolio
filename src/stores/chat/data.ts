@@ -43,3 +43,4 @@ export const responsesMap: Record<QuestionId, Response[]> = {
     { type: 'custom', id: 'bugsCombat' },
   ],
 };
+export const greetMessage = `Hello👋 My name is Peter, what would you like to ask?`;

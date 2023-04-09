@@ -8,6 +8,7 @@
   --message-left-bg-color: aquamarine;
   --message-right-color: #ffe5b4;
   --message-left-color: black;
+  width: 100%;
 }
 
 .messageRight {

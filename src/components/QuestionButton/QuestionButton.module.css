@@ -1,9 +1,16 @@
 .container {
   background-color: blanchedalmond;
   padding: 10px 5px;
+  font-size: 24px;
+  box-shadow: 0px 0px 0px 2px #8b0000;
+  transition: box-shadow 0.2s linear;
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
 }
 :not(.disabled).container:hover {
   cursor: pointer;
+  box-shadow: 0px 0px 0px 4px #8b0000;
 }
 .disabled {
   pointer-events: none;
