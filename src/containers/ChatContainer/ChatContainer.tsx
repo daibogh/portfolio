@@ -1,14 +1,14 @@
 import { useStore } from '@nanostores/react';
-import { FC, Fragment, ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 import { chatAtom, typeAnswerDone, typeQuestionDone } from '../../stores/chat';
-import { QuestionId, questionsMap } from '../../stores/chat/data';
+import { questionsMap } from '../../stores/chat/data';
 import { ChatLayout } from '../../components/ChatLayout';
 import { QuestionSelector } from '../QuestionSelector';
-import { TextAnimation } from '../../components/TextAnimation';
-import { AnswerResolver } from '../../components/answers';
-import styles from './ChatContainer.module.css';
+import { AnswerResolver } from '../../components/AnswerResolver';
+import { QuestionResolver } from '../QuestionResolver';
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
+
   const chat = useMemo(() => {
     const list: ReactNode[] = [];
     for (const options of chatStore) {
@@ -16,10 +16,9 @@ const ChatContainer: FC = () => {
       if (options.type === 'question') {
         const { key, isTyping } = options;
         element = (
-          <TextAnimation
-            className={styles.messageRight}
+          <QuestionResolver
             text={questionsMap[key].text}
-            shouldAnimate={isTyping}
+            isTyping={isTyping}
             onTypeEnd={() => typeQuestionDone(key)}
           />
         );
@@ -29,7 +28,7 @@ const ChatContainer: FC = () => {
           <AnswerResolver
             messageConfigs={answer}
             isTyping={isTyping}
-            onTypeEnd={() => typeAnswerDone(key as QuestionId)}
+            onTypeEnd={() => typeAnswerDone(key)}
           />
         );
       }

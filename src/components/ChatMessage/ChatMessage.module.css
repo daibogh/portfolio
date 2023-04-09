@@ -1,13 +1,21 @@
-.messageRight {
+.message {
   padding: 5px 10px;
   max-width: 100%;
   position: relative;
   border-radius: 5px;
+}
+
+.messageRight {
   align-self: flex-end;
   background-color: blanchedalmond;
 }
+
+.messageLeft {
+  align-self: flex-start;
+  background-color: aquamarine;
+}
 @media screen and (min-width: 600px) {
-  .messsageRight {
+  .message {
     max-width: 80%;
   }
 }
