@@ -34,13 +34,19 @@ describe('computedValues', () => {
     });
     it('should be truthy if responsesAtom has a response with isTyping true', () => {
       responsesAtom.set({
-        aboutYourself: { key: 'aboutYourself', isTyping: true },
+        aboutYourself: {
+          answer: [{ text: 'someText', type: 'text' }],
+          isTyping: true,
+        },
       });
       expect(isSomethingTyping.get()).toBeTruthy();
     });
     it('should be falsy if all atoms have isTyping: false', () => {
       responsesAtom.set({
-        aboutYourself: { key: 'aboutYourself', isTyping: false },
+        aboutYourself: {
+          answer: [{ text: 'someText', type: 'text' }],
+          isTyping: false,
+        },
       });
       selectedQuestionsAtom.set([{ key: 'aboutYourself', isTyping: false }]);
       greetMessageConfigAtom.set({ isTyping: false });
@@ -53,12 +59,20 @@ describe('computedValues', () => {
       selectedQuestionsAtom.set([{ key: 'aboutYourself', isTyping: false }]);
       // fill responsesAtom with some responses
       responsesAtom.set({
-        aboutYourself: { key: 'aboutYourself', isTyping: true },
+        aboutYourself: {
+          answer: [{ text: 'someText', type: 'text' }],
+          isTyping: true,
+        },
       });
       // expect chatAtom to be an array of questions and responses
       expect(chatAtom.get()).toEqual([
         { key: 'aboutYourself', isTyping: false, type: 'question' },
-        { key: 'aboutYourself', isTyping: true, type: 'response' },
+        {
+          key: 'aboutYourself',
+          isTyping: true,
+          type: 'response',
+          answer: [{ text: 'someText', type: 'text' }],
+        },
       ]);
     });
   });

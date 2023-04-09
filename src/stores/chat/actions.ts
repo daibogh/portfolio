@@ -1,4 +1,4 @@
-import { QuestionId } from './data';
+import { QuestionId, responsesMap } from './data';
 import {
   greetMessageConfigAtom,
   responsesAtom,
@@ -30,7 +30,11 @@ export const typeQuestionDone = (question: QuestionId) => {
   );
   responsesAtom.set({
     ...responsesAtom.get(),
-    [question]: { key: question, isTyping: true },
+    [question]: {
+      answer: responsesMap[question],
+      isTyping: true,
+      key: question,
+    },
   });
 };
 export const typeAnswerDone = (answerKey: QuestionId) => {

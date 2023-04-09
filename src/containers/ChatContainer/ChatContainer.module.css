@@ -1,0 +1,13 @@
+.messageRight {
+  padding: 5px 10px;
+  max-width: 100%;
+  position: relative;
+  border-radius: 5px;
+  align-self: flex-end;
+  background-color: blanchedalmond;
+}
+@media screen and (min-width: 600px) {
+  .messsageRight {
+    max-width: 80%;
+  }
+}

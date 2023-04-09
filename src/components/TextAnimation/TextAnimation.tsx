@@ -6,12 +6,14 @@ type TextAnimationProps = {
   text: string;
   shouldAnimate?: boolean;
   onTypeEnd?: () => void;
+  className?: string;
 };
 const noop = () => {};
 const TextAnimation: FC<TextAnimationProps> = ({
   text,
   onTypeEnd = noop,
   shouldAnimate,
+  className,
 }) => {
   const { visibleText, shouldHideCursor } = useTextAnimation({
     text,
@@ -19,7 +21,7 @@ const TextAnimation: FC<TextAnimationProps> = ({
     shouldAnimate,
   });
   return (
-    <div className={cn(styles.animatedText)}>
+    <div className={cn(styles.animatedText, className)}>
       {visibleText}
       {!shouldHideCursor && (
         <span className={styles.cursor} data-testid="cursor" />
