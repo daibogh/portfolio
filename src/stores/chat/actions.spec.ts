@@ -64,8 +64,13 @@ describe('actions', () => {
           key: 'aboutYourself',
           isTyping: true,
           answer: [
+            { text: 'I live in Belgrade, I am a frontend dev', type: 'text' },
             {
-              text: 'I live in Belgrade, working as frontend engineer.',
+              text: "Before Serbia, I lived in Russia - where I received a master's degree in information technology",
+              type: 'text',
+            },
+            {
+              text: "Now i am working in a company called 'Toloka'",
               type: 'text',
             },
           ],
