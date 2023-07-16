@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/react';
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode, useEffect, useMemo } from 'react';
 
 import {
   chatAtom,
@@ -15,6 +15,7 @@ import { AnswerResolver } from '../../components/AnswerResolver';
 import { QuestionResolver } from '../QuestionResolver';
 import { ChatMessage } from '../../components/ChatMessage';
 import { TextAnimation } from '../../components/TextAnimation';
+import { scrollToBottom } from '../../utils/scroll-to-bottom';
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
   const greetMessageConfig = useStore(greetMessageConfigAtom);
@@ -47,6 +48,9 @@ const ChatContainer: FC = () => {
       list.push(element);
     }
     return list;
+  }, [chatStore]);
+  useEffect(() => {
+    scrollToBottom();
   }, [chatStore]);
   return (
     <>
