@@ -50,8 +50,23 @@ const ChatContainer: FC = () => {
     return list;
   }, [chatStore]);
   useEffect(() => {
-    scrollToBottom();
-  }, [chatStore]);
+    const target = document.querySelector('#root');
+    if (target) {
+      const callback = (mutationsList: any, observer: any) => {
+        for (let mutation of mutationsList) {
+          console.log(mutation);
+          if (mutation.type === 'childList') {
+            scrollToBottom();
+          }
+        }
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(target, { childList: true, subtree: true });
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, []);
   return (
     <>
       <ChatMessage type="left">
