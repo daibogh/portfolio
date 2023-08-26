@@ -3,7 +3,11 @@ import userEvent from '@testing-library/user-event';
 import QuestionSelector from './QuestionSelector';
 import { useStore } from '@nanostores/react';
 import { questionsMap } from '../../store';
-jest.mock('../../store', () => ({ questionsMap: {} }));
+jest.mock('../../store', () => ({
+  questionsMap: {},
+  questionsToSelectAtom: 'questionsToSelectAtom',
+  isSomethingTyping: 'isSomethingTyping',
+}));
 jest.mock('@nanostores/react', () => ({ useStore: jest.fn() }));
 describe('QuestionSelector', () => {
   it('should render list of available questions', () => {
@@ -18,15 +22,23 @@ describe('QuestionSelector', () => {
       },
     ]);
     const getIsTyping = jest.fn(() => false);
-    jest
-      .mocked(useStore)
-      .mockImplementationOnce(getList)
-      .mockImplementationOnce(getIsTyping)
-      // TODO: fix double call of useStore for each atom
-      .mockImplementationOnce(getList)
-      .mockImplementationOnce(getIsTyping);
+
+    const mockStore = jest.fn(
+      (atom: 'questionsToSelectAtom' | 'isSomethingTyping') => {
+        const store = {
+          questionsToSelectAtom: getList,
+          isSomethingTyping: getIsTyping,
+        } as const;
+        return store[atom]();
+      },
+    );
+
+    jest.mocked(useStore).mockImplementation(mockStore as any);
+
     (questionsMap as any).question1 = { text: 'question1Text' };
+
     render(<QuestionSelector />);
+
     expect(screen.getByText('question1Text')).toBeInTheDocument();
     expect(screen.getByText('Clear chat history')).toBeInTheDocument();
   });
@@ -44,13 +56,19 @@ describe('QuestionSelector', () => {
       },
     ]);
     const getIsTyping = jest.fn(() => false);
-    jest
-      .mocked(useStore)
-      .mockImplementationOnce(getList)
-      .mockImplementationOnce(getIsTyping)
-      // TODO: fix double call of useStore for each atom
-      .mockImplementationOnce(getList)
-      .mockImplementationOnce(getIsTyping);
+
+    const mockStore = jest.fn(
+      (atom: 'questionsToSelectAtom' | 'isSomethingTyping') => {
+        const store = {
+          questionsToSelectAtom: getList,
+          isSomethingTyping: getIsTyping,
+        } as const;
+        return store[atom]();
+      },
+    );
+
+    jest.mocked(useStore).mockImplementation(mockStore as any);
+
     (questionsMap as any).question1 = { text: 'question1Text' };
     render(<QuestionSelector />);
     userEvent.click(screen.getByText('question1Text'));

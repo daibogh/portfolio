@@ -9,13 +9,6 @@
     "@nanostores/persistent": "^0.7.0",
     "@nanostores/react": "^0.4.1",
     "@nanostores/router": "^0.11.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "nanostores": "^0.7.4",
@@ -57,7 +50,14 @@
     "@types/lodash": "^4.14.197",
     "jest-canvas-mock": "^2.5.0",
     "phaser3-debug": "^0.1.2",
-    "prettier": "^2.8.7"
+    "prettier": "^2.8.7",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
   },
   "jest": {
     "transformIgnorePatterns": [
