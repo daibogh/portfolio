@@ -1756,6 +1756,11 @@
   dependencies:
     use-sync-external-store "^1.2.0"
 
+"@nanostores/router@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@nanostores/router/-/router-0.11.0.tgz#bec0fac8535975c577db9788cc6dc7f3e877691b"
+  integrity sha512-QlcneDqXVIsQL3agOS59d9gJQ/9M3qyVOWVttARL5Xvpmovtq91oOYcQxKbLq9i7iitGs5yDJmabe/O3QjWddQ==
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz#dbf733a965ca47b1973177dc0bb6c889edcfb129"

@@ -1,9 +1,12 @@
 import { FC, useMemo } from 'react';
-import { isSomethingTyping, questionsToSelectAtom } from '../../stores/chat';
 import { useStore } from '@nanostores/react';
-import { questionsMap } from '../../stores/chat/data';
 import { QuestionSelectorLayout } from '../../components/QuestionSelectorLayout';
 import { QuestionButton } from '../../components/QuestionButton';
+import {
+  questionsToSelectAtom,
+  isSomethingTyping,
+  questionsMap,
+} from '../../store';
 
 const QuestionSelector: FC = () => {
   const questions = useStore(questionsToSelectAtom);

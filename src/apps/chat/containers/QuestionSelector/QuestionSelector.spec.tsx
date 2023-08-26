@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import QuestionSelector from './QuestionSelector';
 import { useStore } from '@nanostores/react';
-import { questionsMap } from '../../stores/chat/data';
+import { questionsMap } from '../../store';
 jest.mock('../../stores/chat/data', () => ({ questionsMap: {} }));
 jest.mock('@nanostores/react', () => ({ useStore: jest.fn() }));
 describe('QuestionSelector', () => {
