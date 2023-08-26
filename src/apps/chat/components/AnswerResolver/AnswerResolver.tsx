@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { TextAnimation } from '../TextAnimation';
-import { Response } from '../../stores/chat/data';
+import { Response } from '../../store';
 import { BugsCombat } from '../BugsCombat';
 import { CustomAnswerWrapper } from '../CustomAnswerWrapper';
 import { DoggoImage } from '../DoggoImage';

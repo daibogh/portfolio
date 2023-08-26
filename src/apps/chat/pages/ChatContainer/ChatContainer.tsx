@@ -1,29 +1,34 @@
 import { useStore } from '@nanostores/react';
 import { FC, ReactNode, useEffect, useMemo } from 'react';
 
-import {
-  chatAtom,
-  greetMessageConfigAtom,
-  greetTypingDone,
-  typeAnswerDone,
-  typeQuestionDone,
-} from '../../stores/chat';
-import { greetMessage, questionsMap } from '../../stores/chat/data';
 import { ChatLayout } from '../../components/ChatLayout';
-import { QuestionSelector } from '../QuestionSelector';
+import { QuestionSelector } from '../../containers/QuestionSelector';
 import { AnswerResolver } from '../../components/AnswerResolver';
-import { QuestionResolver } from '../QuestionResolver';
+import { QuestionResolver } from '../../containers/QuestionResolver';
 import { ChatMessage } from '../../components/ChatMessage';
 import { TextAnimation } from '../../components/TextAnimation';
-import { scrollToBottom } from '../../utils/scroll-to-bottom';
+import {
+  chatAtom,
+  greetMessage,
+  greetMessageConfigAtom,
+  greetTypingDone,
+  questionsMap,
+  typeAnswerDone,
+  typeQuestionDone,
+} from '../../store';
+import { scrollToBottom } from '../../../../utils/scroll-to-bottom';
+
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
   const greetMessageConfig = useStore(greetMessageConfigAtom);
+
   const chat = useMemo(() => {
     const list: ReactNode[] = [];
     let counter = 0;
+
     for (const options of chatStore) {
       let element: ReactNode = null;
+
       if (options.type === 'question') {
         const { key, isTyping } = options;
         element = (
@@ -45,28 +50,35 @@ const ChatContainer: FC = () => {
           />
         );
       }
+
       list.push(element);
     }
+
     return list;
   }, [chatStore]);
+
   useEffect(() => {
     const target = document.querySelector('#root');
+
     if (target) {
       const callback = (mutationsList: any, observer: any) => {
         for (let mutation of mutationsList) {
-          console.log(mutation);
           if (mutation.type === 'childList') {
             scrollToBottom();
           }
         }
       };
+
       const observer = new MutationObserver(callback);
+
       observer.observe(target, { childList: true, subtree: true });
+
       return () => {
         observer.disconnect();
       };
     }
   }, []);
+
   return (
     <>
       <ChatMessage type="left">
