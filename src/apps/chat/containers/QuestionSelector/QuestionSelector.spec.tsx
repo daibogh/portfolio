@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import QuestionSelector from './QuestionSelector';
 import { useStore } from '@nanostores/react';
 import { questionsMap } from '../../store';
-jest.mock('../../stores/chat/data', () => ({ questionsMap: {} }));
+jest.mock('../../store', () => ({ questionsMap: {} }));
 jest.mock('@nanostores/react', () => ({ useStore: jest.fn() }));
 describe('QuestionSelector', () => {
   it('should render list of available questions', () => {
