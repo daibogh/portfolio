@@ -70,7 +70,7 @@ describe('actions', () => {
               type: 'text',
             },
             {
-              text: "Now i am working in a company called 'Toloka'",
+              text: "Now i am working for a company called 'Toloka'",
               type: 'text',
             },
           ],
