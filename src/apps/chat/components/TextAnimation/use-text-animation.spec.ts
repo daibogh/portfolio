@@ -11,7 +11,7 @@ describe('useTextAnimation', () => {
       }),
     );
     expect(result.current.visibleText).toEqual('');
-    expect(result.current.shouldHideCursor).toEqual(false);
+    expect(result.current.shouldShowCursor).toEqual(true);
   });
   describe('shouldAnimate=true', () => {
     it('should return visibleText and shouldHideCursor=true', async () => {
@@ -27,19 +27,19 @@ describe('useTextAnimation', () => {
 
       await waitForValueToChange(() => result.current.visibleText);
       expect(result.current.visibleText).toEqual('t');
-      expect(result.current.shouldHideCursor).toEqual(false);
+      expect(result.current.shouldShowCursor).toEqual(true);
 
       await waitForValueToChange(() => result.current.visibleText);
       expect(result.current.visibleText).toEqual('te');
-      expect(result.current.shouldHideCursor).toEqual(false);
+      expect(result.current.shouldShowCursor).toEqual(true);
 
       await waitForValueToChange(() => result.current.visibleText);
       expect(result.current.visibleText).toEqual('tes');
-      expect(result.current.shouldHideCursor).toEqual(false);
+      expect(result.current.shouldShowCursor).toEqual(true);
 
       await waitForValueToChange(() => result.current.visibleText);
       expect(result.current.visibleText).toEqual('test');
-      expect(result.current.shouldHideCursor).toEqual(true);
+      expect(result.current.shouldShowCursor).toEqual(false);
     });
     it('should call onTypeEnd when text is fully typed', async () => {
       const props: Parameters<typeof useTextAnimation>[0] = {
@@ -62,6 +62,6 @@ describe('useTextAnimation', () => {
       }),
     );
     expect(result.current.visibleText).toEqual('test');
-    expect(result.current.shouldHideCursor).toEqual(true);
+    expect(result.current.shouldShowCursor).toEqual(false);
   });
 });

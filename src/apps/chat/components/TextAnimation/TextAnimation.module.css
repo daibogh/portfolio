@@ -5,6 +5,7 @@
 .cursor {
   position: relative;
 }
+
 .cursor::after {
   content: '';
   position: absolute;

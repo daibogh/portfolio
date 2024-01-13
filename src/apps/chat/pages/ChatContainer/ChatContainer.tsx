@@ -1,22 +1,23 @@
-import { useStore } from '@nanostores/react';
-import { FC, ReactNode, useEffect, useMemo } from 'react';
+import {
+  AnswerResolver,
+  ChatMessage,
+  TextAnimation,
+  ChatLayout,
+} from '@/chat/components';
+import { QuestionResolver, QuestionSelector } from '@/chat/containers';
+import { useAutoScrollDown } from '@/chat/hooks';
 
-import { ChatLayout } from '../../components/ChatLayout';
-import { QuestionSelector } from '../../containers/QuestionSelector';
-import { AnswerResolver } from '../../components/AnswerResolver';
-import { QuestionResolver } from '../../containers/QuestionResolver';
-import { ChatMessage } from '../../components/ChatMessage';
-import { TextAnimation } from '../../components/TextAnimation';
 import {
   chatAtom,
-  greetMessage,
   greetMessageConfigAtom,
-  greetTypingDone,
   questionsMap,
-  typeAnswerDone,
   typeQuestionDone,
-} from '../../store';
-import { scrollToBottom } from '../../../../utils/scroll-to-bottom';
+  typeAnswerDone,
+  greetMessage,
+  greetTypingDone,
+} from '@/chat/store';
+import { useStore } from '@nanostores/react';
+import { FC, ReactNode, useMemo } from 'react';
 
 const ChatContainer: FC = () => {
   const chatStore = useStore(chatAtom);
@@ -27,21 +28,17 @@ const ChatContainer: FC = () => {
     let counter = 0;
 
     for (const options of chatStore) {
-      let element: ReactNode = null;
+      const { key, isTyping, answer, type: messageType } = options;
 
-      if (options.type === 'question') {
-        const { key, isTyping } = options;
-        element = (
+      const element: ReactNode =
+        messageType === 'question' ? (
           <QuestionResolver
             text={questionsMap[key].text}
             isTyping={isTyping}
             onTypeEnd={() => typeQuestionDone(key)}
             key={counter++}
           />
-        );
-      } else {
-        const { key, isTyping, answer } = options;
-        element = (
+        ) : (
           <AnswerResolver
             messageConfigs={answer}
             isTyping={isTyping}
@@ -49,7 +46,6 @@ const ChatContainer: FC = () => {
             key={counter++}
           />
         );
-      }
 
       list.push(element);
     }
@@ -57,27 +53,7 @@ const ChatContainer: FC = () => {
     return list;
   }, [chatStore]);
 
-  useEffect(() => {
-    const target = document.querySelector('#root');
-
-    if (target) {
-      const callback = (mutationsList: any, observer: any) => {
-        for (let mutation of mutationsList) {
-          if (mutation.type === 'childList') {
-            scrollToBottom();
-          }
-        }
-      };
-
-      const observer = new MutationObserver(callback);
-
-      observer.observe(target, { childList: true, subtree: true });
-
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, []);
+  useAutoScrollDown();
 
   return (
     <>

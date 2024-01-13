@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { TextAnimation } from '../../components/TextAnimation';
 import { ChatMessage } from '../../components/ChatMessage';
 
@@ -12,13 +12,14 @@ const QuestionResolver: FC<QuestionResolverProps> = ({
   isTyping,
   onTypeEnd,
 }) => {
+  useEffect(() => {
+    if (isTyping) {
+      onTypeEnd();
+    }
+  });
   return (
     <ChatMessage type="right">
-      <TextAnimation
-        text={text}
-        shouldAnimate={isTyping}
-        onTypeEnd={onTypeEnd}
-      />
+      <TextAnimation text={text} shouldAnimate={false} />
     </ChatMessage>
   );
 };

@@ -1,5 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
-import styles from './MainLayout.module.css';
-export const _MainLayout: FC<PropsWithChildren<{}>> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+import s from './MainLayout.module.css';
+
+type MainLayoutProps = PropsWithChildren<{}>;
+
+export const _MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  return <div className={s.container}>{children}</div>;
 };

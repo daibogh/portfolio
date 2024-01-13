@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import QuestionResolver from './QuestionResolver';
-import { ChatMessage } from '../../components/ChatMessage';
 jest.mock('../../components/ChatMessage', () => ({
   ChatMessage: ({ children, type }: any) => (
     <div data-testid="chatMessage" className={type}>
