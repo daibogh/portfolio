@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.15",
+    "@craco/craco": "^7.1.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.15.4",
+    "@mui/material": "^5.15.4",
     "@nanostores/persistent": "^0.7.0",
     "@nanostores/react": "^0.4.1",
     "@nanostores/router": "^0.11.0",
@@ -22,10 +25,11 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -46,18 +50,18 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react-hooks": "^8.0.1",
-    "@types/lodash": "^4.14.197",
-    "jest-canvas-mock": "^2.5.0",
-    "phaser3-debug": "^0.1.2",
-    "prettier": "^2.8.7",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "14.0.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.14.197",
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0"
+    "@types/react-dom": "^18.0.0",
+    "jest-canvas-mock": "^2.5.0",
+    "phaser3-debug": "^0.1.2",
+    "prettier": "^2.8.7"
   },
   "jest": {
     "transformIgnorePatterns": [

@@ -11,16 +11,16 @@ export const useTextAnimation = ({
   onTypeEnd: () => void;
 }) => {
   const [visibleText, setVisibleText] = useState(shouldAnimate ? '' : text);
-  const [shouldHideCursor, setShouldHideCursor] = useState(!shouldAnimate);
+  const [shouldShowCursor, setShouldShowCursor] = useState(shouldAnimate);
 
   const updateVisibleText = useCallback(
     (idx: number, options: { timer: any }) => {
       if (idx >= text.length) {
-        setShouldHideCursor(true);
+        setShouldShowCursor(false);
         onTypeEnd();
         return;
       }
-      setShouldHideCursor(false);
+      setShouldShowCursor(true);
       options.timer = setTimeout(() => {
         setVisibleText(text.slice(0, idx + 1));
         updateVisibleText(idx + 1, options);
@@ -40,7 +40,7 @@ export const useTextAnimation = ({
     };
   }, [updateVisibleText, shouldAnimate]);
   return useMemo(
-    () => ({ visibleText, shouldHideCursor }),
-    [visibleText, shouldHideCursor],
+    () => ({ visibleText, shouldShowCursor }),
+    [visibleText, shouldShowCursor],
   );
 };

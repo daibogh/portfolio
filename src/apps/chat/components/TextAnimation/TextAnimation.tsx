@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import cn from 'classnames';
-import styles from './TextAnimation.module.css';
+import s from './TextAnimation.module.css';
 import { useTextAnimation } from './use-text-animation';
 type TextAnimationProps = {
   text: string;
@@ -15,17 +15,17 @@ const TextAnimation: FC<TextAnimationProps> = ({
   shouldAnimate,
   className,
 }) => {
-  const { visibleText, shouldHideCursor } = useTextAnimation({
+  const { visibleText, shouldShowCursor } = useTextAnimation({
     text,
     onTypeEnd,
     shouldAnimate,
   });
+
   return (
-    <div className={cn(styles.animatedText, className)}>
+    <div className={cn(s.animatedText, className)}>
       {visibleText}
-      {!shouldHideCursor && (
-        <span className={styles.cursor} data-testid="cursor" />
-      )}
+
+      {shouldShowCursor && <span className={s.cursor} data-testid="cursor" />}
     </div>
   );
 };

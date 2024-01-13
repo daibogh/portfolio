@@ -45,6 +45,7 @@ export const chatAtom = computed(
           key: QuestionId;
           isTyping: boolean;
           type: 'question';
+          answer?: never;
         }
       | {
           key: QuestionId;

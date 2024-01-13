@@ -26,12 +26,12 @@ export const responsesMap: Record<QuestionId, Response[]> = {
     },
     {
       type: 'text',
-      text: "Now i am working in a company called 'Toloka'",
+      text: "Now i am working for a company called 'Toloka'",
     },
   ],
   hobby: [
     { type: 'text', text: 'I love programming, I guess that is my hobby#1 ❤️' },
-    { type: 'text', text: 'Also I like videogames and my doggo 🐶' },
+    { type: 'text', text: 'Also I like video games and my doggo 🐶' },
     { type: 'custom', id: 'doggoImage' },
   ],
   workExperience: [
