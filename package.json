@@ -13,6 +13,7 @@
     "@nanostores/react": "^0.4.1",
     "@nanostores/router": "^0.11.0",
     "classnames": "^2.3.2",
+    "firebase": "^10.7.1",
     "lodash": "^4.17.21",
     "nanostores": "^0.7.4",
     "normalize.css": "^8.0.1",
@@ -29,7 +30,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "emulators": "firebase emulators:start"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +61,7 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "firebase-tools": "^13.0.3",
     "jest-canvas-mock": "^2.5.0",
     "phaser3-debug": "^0.1.2",
     "prettier": "^2.8.7"
