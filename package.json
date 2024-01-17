@@ -31,7 +31,7 @@
     "test": "craco test",
     "eject": "craco eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "emulators": "firebase emulators:start"
+    "emulators": "firebase emulators:start --import=./local --export-on-exit=./local"
   },
   "eslintConfig": {
     "extends": [
