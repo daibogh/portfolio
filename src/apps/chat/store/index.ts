@@ -1,4 +1,4 @@
 export * from './atoms';
 export * from './actions';
-export * from './computedValues';
+export * from './computed-values';
 export * from './data';

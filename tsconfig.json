@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@/chat/*": ["./apps/chat/*"]
+      "@/chat/*": ["./apps/chat/*"],
+      "@/firebase/*": ["./firebase/*"]
     }
   },
   "include": ["src"]
