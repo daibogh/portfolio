@@ -1,8 +1,15 @@
 import { FC, PropsWithChildren } from 'react';
-import s from './MainLayout.module.css';
+import { cn } from '../lib/utils';
 
 type MainLayoutProps = PropsWithChildren<{}>;
 
-export const _MainLayout: FC<MainLayoutProps> = ({ children }) => {
-  return <div className={s.container}>{children}</div>;
+export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
+  return (
+    <div className={cn(
+      "min-h-screen bg-white",
+      "container mx-auto px-4 py-8"
+    )}>
+      {children}
+    </div>
+  );
 };

@@ -1,9 +1,16 @@
 import { FC, ReactNode } from 'react';
-import styles from './ChatLayout.module.css';
+import { cn } from '../../../../lib/utils';
+
 const ChatLayout: FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={cn(
+      "flex flex-col gap-2",
+    )}>
+      {children}
+    </div>
+  );
 };
 
 export default ChatLayout;

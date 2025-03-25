@@ -1,14 +1,16 @@
 import { FC } from 'react';
-import cn from 'classnames';
-import s from './TextAnimation.module.css';
+import { cn } from '../../../../lib/utils';
 import { useTextAnimation } from './use-text-animation';
+
 type TextAnimationProps = {
   text: string;
   shouldAnimate?: boolean;
   onTypeEnd?: () => void;
   className?: string;
 };
+
 const noop = () => {};
+
 const TextAnimation: FC<TextAnimationProps> = ({
   text,
   onTypeEnd = noop,
@@ -22,11 +24,19 @@ const TextAnimation: FC<TextAnimationProps> = ({
   });
 
   return (
-    <div className={cn(s.animatedText, className)}>
+    <div className={cn("relative", className)}>
       {visibleText}
-
-      {shouldShowCursor && <span className={s.cursor} data-testid="cursor" />}
+      {shouldShowCursor && (
+        <span 
+          className={cn(
+            "inline-block w-0.5 h-4 ml-0.5 bg-primary animate-pulse",
+            "align-middle"
+          )} 
+          data-testid="cursor" 
+        />
+      )}
     </div>
   );
 };
+
 export default TextAnimation;

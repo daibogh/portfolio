@@ -5,6 +5,7 @@ import { BugsCombat } from '../BugsCombat';
 import { CustomAnswerWrapper } from '../CustomAnswerWrapper';
 import { DoggoImage } from '../DoggoImage';
 import { ChatMessage } from '../ChatMessage';
+
 const customMessagesDictionary: Record<string, FC> = {
   bugsCombat: BugsCombat,
   doggoImage: DoggoImage,
@@ -19,6 +20,7 @@ const AnswerResolver: FC<{
     isTyping ? [messageConfigs[0]] : messageConfigs,
   );
   const [isPartBeignTyped, setIsPartBeignTyped] = useState(isTyping);
+
   useEffect(() => {
     if (!isPartBeignTyped && isTyping) {
       if (messageConfigs.length > shownMessages.length) {
@@ -32,9 +34,11 @@ const AnswerResolver: FC<{
       }
     }
   }, [isPartBeignTyped, isTyping, messageConfigs, shownMessages, onTypeEnd]);
+
   const onPartBeingTypedEnd = useCallback(() => {
     setIsPartBeignTyped(false);
   }, []);
+
   return (
     <>
       {shownMessages.map((messageConfig, idx) => {
@@ -63,4 +67,5 @@ const AnswerResolver: FC<{
     </>
   );
 };
+
 export default AnswerResolver;
