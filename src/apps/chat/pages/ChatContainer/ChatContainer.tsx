@@ -6,28 +6,17 @@ import {
 } from '@/chat/components';
 import { QuestionResolver, QuestionSelector } from '@/chat/containers';
 import { useAutoScrollDown } from '@/chat/hooks';
-
-import {
-  chatAtom,
-  greetMessageConfigAtom,
-  questionsMap,
-  typeQuestionDone,
-  typeAnswerDone,
-  greetMessage,
-  greetTypingDone,
-} from '@/chat/store';
-import { useStore } from '@nanostores/react';
+import { chatStore } from '@/chat/store/ChatStore';
+import { questionsMap, greetMessage } from '@/chat/store/data';
+import { observer } from 'mobx-react-lite';
 import { FC, ReactNode, useMemo } from 'react';
 
-const ChatContainer: FC = () => {
-  const chatStore = useStore(chatAtom);
-  const greetMessageConfig = useStore(greetMessageConfigAtom);
-
-  const chat = useMemo(() => {
+const ChatContainer: FC = observer(() => {
+  const chat = (() => {
     const list: ReactNode[] = [];
     let counter = 0;
 
-    for (const options of chatStore) {
+    for (const options of chatStore.chat) {
       const { key, isTyping, answer, type: messageType } = options;
 
       const element: ReactNode =
@@ -35,14 +24,14 @@ const ChatContainer: FC = () => {
           <QuestionResolver
             text={questionsMap[key].text}
             isTyping={isTyping}
-            onTypeEnd={() => typeQuestionDone(key)}
+            onTypeEnd={() => chatStore.typeQuestionDone(key)}
             key={counter++}
           />
         ) : (
           <AnswerResolver
             messageConfigs={answer}
             isTyping={isTyping}
-            onTypeEnd={() => typeAnswerDone(key)}
+            onTypeEnd={() => chatStore.typeAnswerDone(key)}
             key={counter++}
           />
         );
@@ -51,7 +40,7 @@ const ChatContainer: FC = () => {
     }
 
     return list;
-  }, [chatStore]);
+  })();
 
   useAutoScrollDown();
 
@@ -60,14 +49,14 @@ const ChatContainer: FC = () => {
       <ChatMessage type="left">
         <TextAnimation
           text={greetMessage}
-          shouldAnimate={greetMessageConfig.isTyping}
-          onTypeEnd={greetTypingDone}
+          shouldAnimate={chatStore.greetMessageConfig.isTyping}
+          onTypeEnd={chatStore.greetTypingDone}
         />
       </ChatMessage>
       <ChatLayout>{chat}</ChatLayout>
       <QuestionSelector />
     </>
   );
-};
+});
 
 export default ChatContainer;

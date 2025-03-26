@@ -1,28 +1,28 @@
+import { chatStore } from '@/chat/store/ChatStore';
+import { questionsMap, QuestionId } from '@/chat/store/data';
+import { observer } from 'mobx-react-lite';
 import { FC, useMemo } from 'react';
-import { useStore } from '@nanostores/react';
-import { QuestionSelectorLayout } from '../../components/QuestionSelectorLayout';
-import { QuestionButton } from '../../components/QuestionButton';
-import {
-  questionsToSelectAtom,
-  isSomethingTyping,
-  questionsMap,
-} from '../../store';
+import { Button } from 'shared/components';
 
-const QuestionSelector: FC = () => {
-  const questions = useStore(questionsToSelectAtom);
-  const shouldDisable = useStore(isSomethingTyping);
+export const QuestionSelector: FC = observer(() => {
+  const questions = chatStore.questionsToSelect;
+  const shouldDisable = chatStore.isSomethingTyping;
+
   const questionsList = useMemo(() => {
-    return questions.map(({ id, action }) => {
-      return (
-        <QuestionButton
-          disabled={shouldDisable}
-          key={id}
-          text={id === 'clear' ? 'Clear chat history' : questionsMap[id].text}
-          onClick={() => (id === 'clear' ? action() : action(id))}
-        />
-      );
-    });
+    return questions.map(({ id, action }) => (
+      <Button
+        key={id}
+        onClick={() => action()}
+        disabled={shouldDisable}
+      >
+        {id === 'clear' ? 'Clear chat history' : questionsMap[id as QuestionId].text}
+      </Button>
+    ));
   }, [questions, shouldDisable]);
-  return <QuestionSelectorLayout>{questionsList}</QuestionSelectorLayout>;
-};
-export default QuestionSelector;
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {questionsList}
+    </div>
+  );
+});

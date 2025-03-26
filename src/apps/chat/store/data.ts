@@ -9,6 +9,7 @@ export const questionsMap = {
   },
   hobby: { text: 'Do you have any kinda hobby?', id: 'hobby' },
 } as const;
+
 export type QuestionId = keyof typeof questionsMap;
 
 export type Response = {
@@ -51,4 +52,5 @@ export const responsesMap: Record<QuestionId, Response[]> = {
     { type: 'custom', id: 'bugsCombat' },
   ],
 };
-export const greetMessage = `Hello👋 My name is Peter`;
+
+export const greetMessage = 'Hello👋 My name is Peter';

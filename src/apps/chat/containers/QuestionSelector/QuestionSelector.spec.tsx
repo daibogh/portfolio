@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import QuestionSelector from './QuestionSelector';
+import { QuestionSelector } from './QuestionSelector';
 import { useStore } from '@nanostores/react';
 import { questionsMap } from '../../store';
 jest.mock('../../store', () => ({
