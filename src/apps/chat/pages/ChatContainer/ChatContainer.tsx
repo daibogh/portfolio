@@ -9,7 +9,7 @@ import { useAutoScrollDown } from '@/chat/hooks';
 import { chatStore } from '@/chat/store/ChatStore';
 import { questionsMap, greetMessage } from '@/chat/store/data';
 import { observer } from 'mobx-react-lite';
-import { FC, ReactNode, useMemo } from 'react';
+import { FC, ReactNode } from 'react';
 
 const ChatContainer: FC = observer(() => {
   const chat = (() => {
